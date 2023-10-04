@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
 
-export default function CityCard(props) {
+export default function CityCard({property,count,cityRoute}) {
   const cities = ["New York", "Mumbai", "Paris", "London"];
   const [citySelect, setCitySelect] = useState("New York");
   const [cityProperty, setCityProperty] = useState(
-    props.property.filter((property) => property.city === "New York")
+    property.filter((property) => property.city === "New York")
   );
 
   const handleCitySelect = (hcity) => {
     setCitySelect(hcity);
     setCityProperty(
-      props.property.filter((property) => property.city === hcity)
+      property.filter((property) => property.city === hcity)
     );
   };
 
   useEffect(() => {
-    props.count(0);
+    count(0);
+    // eslint-disable-next-line
   }, [citySelect]);
 
-  props.cityRoute(cityProperty);
+  cityRoute(cityProperty);
 
   return (
     <div className="flex justify-between mb-5  items-center">
